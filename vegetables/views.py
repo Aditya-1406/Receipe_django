@@ -44,6 +44,34 @@ def deleteReceipe(request,id):
 def updateReceipe(request,id):
     queryset = Receipe.objects.get(id=id)
 
-    
+    if request.method == 'POST':
+        receipe_name = request.POST.get('receipe_name')
+        receipe_description = request.POST.get('receipe_description')
+        image = request.FILES.get('image')
+        category_name = request.POST.get('category')
+        # get or create category object
+        category_obj, created = Category.objects.get_or_create(
+            name=category_name
+        )
+
+
+        queryset.receipe_name=receipe_name,
+        queryset.receipe_description=receipe_description,
+        queryset.category=category_obj
+
+        if request.FILES.get('image'):
+            queryset.image = image
+        
+        queryset.save()
+
+        return redirect('getAllReceipe')
+
+
+
+    context = {'receipe' : queryset}
+    return render(request,'UpdateReceipe.html',context)
+
+
+
 
 

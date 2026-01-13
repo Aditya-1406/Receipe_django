@@ -10,11 +10,11 @@
     <form method="post" enctype="multipart/form-data">
         {%csrf_token%}
         <div class="mb-3">
-            <input type="text" class="form-control" name="receipe_name" placeholder="Receipe name">
+            <input type="text" class="form-control" name="receipe_name" placeholder="Receipe name" value="{{receipe.receipe_name}}">
         </div>
 
         <div class="mb-3">
-            <textarea class="form-control" name="receipe_description" placeholder="Receipe Description"></textarea>
+            <textarea class="form-control" name="receipe_description" placeholder="Receipe Description">{{receipe.receipe_description}}</textarea>
         </div>
 
         <div class="mb-3">
@@ -22,10 +22,10 @@
         </div>
 
         <div class="mb-3">
-            <input type="text" class="form-control" name="category" placeholder="category">
+            <input type="text" class="form-control" name="category" placeholder="category" value="{{receipe.category}}">
         </div>
         
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 
     {%endblock%}
