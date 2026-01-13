@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% block title %} Add Receipes {%endblock%}
+
+
+{%block content%}
+<div class="container">
+    <h1> Add Receipes </h1>
+    <hr>
+
+    <form method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div class="mb-3">
+            <input type="text" class="form-control" name="receipe_name" placeholder="Receipe name">
+        </div>
+
+        <div class="mb-3">
+            <textarea class="form-control" name="receipe_description" placeholder="Receipe Description"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <input type="file" class="form-control" name="image" placeholder="upload image">
+        </div>
+
+        <div class="mb-3">
+            <input type="text" class="form-control" name="category" placeholder="category">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    {%endblock%}
