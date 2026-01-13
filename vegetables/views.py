@@ -34,3 +34,16 @@ def addReceipe(request):
         return redirect('getAllReceipe')  # use URL name
 
     return render(request, 'CreateReceipe.html')
+
+def deleteReceipe(request,id):
+    queryset = Receipe.objects.get(id=id)
+
+    queryset.delete()
+    return redirect('getAllReceipe')
+
+def updateReceipe(request,id):
+    queryset = Receipe.objects.get(id=id)
+
+    
+
+
