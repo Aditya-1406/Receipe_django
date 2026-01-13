@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+{% block title %} All Receipes {%endblock%}
+
+
+{%block content%}
+<div class="container">
+    <h1> All Receipes </h1>
+
+    <hr>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Receipe</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+                <th scope="col">Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {%for rece in receipe%}
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{rece.receipe_name}}</td>
+                <td>{{rece.receipe_description}}</td>
+                <td>
+                    {% if rece.image %}
+                    <img src="{{ rece.image.url }}" style="height: 100px; width: 100px;">
+                    {% else %}
+                    <span>No image</span>
+                    {% endif %}
+                </td>
+
+
+                {% if rece.category.name == 'Healthy' %}
+                <td style="background-color:green; color: white;">
+                    {{ rece.category }}
+                </td>
+                {% else %}
+                <td>
+                    {{ rece.category }}
+                </td>
+                {% endif %}
+
+
+                {%endfor%}
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+{%endblock%}
