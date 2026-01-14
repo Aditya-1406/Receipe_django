@@ -21,12 +21,13 @@ from django.urls import path,include
 
 from django.conf import settings
 from django.conf.urls.static import static
-from vegetables.views import login_page, register
+from vegetables.views import login_page, register,logout_page
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',login_page,name='login'),
+    path('logout/',logout_page,name='logout'),
     path('register/',register,name='register'),
     path('receipe/',include('vegetables.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

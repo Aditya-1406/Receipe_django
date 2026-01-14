@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import *
 from django.contrib import messages
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -72,7 +72,9 @@ def updateReceipe(request,id):
     context = {'receipe' : queryset}
     return render(request,'UpdateReceipe.html',context)
 
-
+def logout_page(request):
+    logout(request)
+    return redirect('login')
 
 def login_page(request):
 

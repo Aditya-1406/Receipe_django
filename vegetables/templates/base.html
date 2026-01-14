@@ -10,6 +10,18 @@
 </head>
 
 <body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand">ReceipeO</a>
+            <form class="d-flex" role="search">
+                {% if request.user.is_authenticated %}
+                <button class="btn btn-success" type="submit"><a href="/logout/">Logout</a></button>
+                {%else %}
+                <button class="btn btn-success" type="submit"><a href="/">Login</a></button>
+                {%endif%}
+            </form>
+        </div>
+    </nav>
 
     {% if messages %}
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
