@@ -21,11 +21,12 @@ from django.urls import path,include
 
 from django.conf import settings
 from django.conf.urls.static import static
-from vegetables.views import home
+from vegetables.views import login, register
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home),
+    path('',login,name='login'),
+    path('register/',register,name='register'),
     path('receipe/',include('vegetables.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
