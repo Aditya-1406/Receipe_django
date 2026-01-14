@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from .models import *
 from django.contrib import messages
+from django.contrib.auth import authenticate,login
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
+@login_required(login_url='/')
 def getAllReceipe(request):
 
     queryset = Receipe.objects.all()
@@ -72,7 +74,25 @@ def updateReceipe(request,id):
 
 
 
-def login(request):
+def login_page(request):
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        if not User.objects.filter(username=username).exists():
+            messages.info(request, "Invalid Username ")
+            return redirect('login')
+        
+        user = authenticate(username=username,password=password)
+
+        if user is None:
+            messages.info(request, "Invalid Password")
+            return redirect('login')
+        else:
+            login(request,user)
+            return redirect('getAllReceipe')
+
     return render(request,'login.html')
 
 
